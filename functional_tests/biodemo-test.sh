@@ -154,7 +154,8 @@ test_stdout_exit "$test_program --minlen 1000 two_sequence.fasta" two_sequence.f
 test_exit_status "$test_program --this_is_not_a_valid_argument > /dev/null 2>&1" 2
 # Test exit status for a non existent input FASTA file
 test_exit_status "$test_program this_file_does_not_exist.fasta > /dev/null 2>&1" 1
-
+# Update both the test functions to rerun with coverage enabled
+coverage run ${1/$test_program/$(which $test_program)}
 
 # 3. End of testing - check if any errors occurrred
 if [ "$num_errors" -gt 0 ]; then
